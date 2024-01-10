@@ -1,15 +1,13 @@
-from flask import request, make_response, jsonify, session
-from flask_restful import Resource
 import time
 
 # Local imports
-from config import app, db, api, bcrypt
+from config import api, app, bcrypt, db
+from flask import jsonify, make_response, request, session
+from flask_restful import Resource
 # Add your model imports
-from models import User, Review, Location
+from models import Location, Review, User
 
 URL_PREFIX = '/api'
-
-# HELPER METHOD #
 
 def current_user():
     if session["user_id"]:
@@ -24,11 +22,11 @@ class Users(Resource):
         data = request.get_json()
         password_hash = bcrypt.generate_password_hash(data['password']).decode('utf-8')
         new_user = User(
-            fist_name = data['first_name'],
+            first_name = data['first_name'],
             last_name = data['last_name'],
             image = data['image'],
             email = data['email'],
-            password_hash=password_hash
+            password_hash = password_hash
         )
         db.session.add(new_user)
         db.session.commit()
@@ -43,12 +41,18 @@ class UserById(Resource):
     
 class ReviewById(Resource):
     def get(self, id):
-        review = db.session.get(Review,id)
+        review = Review.query.filter_by(id=id).first().to_dict()
         return make_response(jsonify(review), 200)
+        
+    def delete(self,id):
+        review = db.session.get(Review, id)
+        db.session.delete(review)
+        db.session.commit()
+        return {}, 204
 
-class Review(Resource):
+class Reviews(Resource):
     def get(self):
-        reviews = [review.to_dict() for review in Review.query.all()]
+        reviews = [review.to_dict(rules=('-location.reviews',)) for review in Review.query.all()]
         return make_response(jsonify(reviews), 200)
     
     def post(self):
@@ -56,41 +60,31 @@ class Review(Resource):
         current_time = time.strftime("%Y-%m-%d %H:%M:%S")
         new_review = Review(
             title = data['title'],
+            spooky_score = data['spooky_score'],
             spooky_review = data['spooky_review'],
             hospitality_review = data['hospitality_review'],
             image = data['image'],
-            hostpitality_score = data['hostpitality_score'],
-            spooky_score = data['spooky_score'],
-            date = current_time
+            hospitality_score = data['hospitality_score'],
+            date = current_time,
+            user_id = data['user_id'],
+            location_id  = data['location_id']
         )
         db.session.add(new_review)
         db.session.commit()
         return make_response(new_review.to_dict(), 201)
     
-    def patch(self, id):
-            review = db.session.get(Review, id)
-            try:
-                data = request.json
-                for key in data:
-                    setattr(review, key, data[key])
-                db.session.add(review)
-                db.session.commit()
-                return review.to_dict(), 206
-            except Exception as e:
-                return {'error': f'{e}'}, 406
-        
-    def delete(self,id):
-        review = db.session.get(Review, id)
-        db.session.delete(review)
-        db.session.commit()
-        return {}, 204
     
 class LocationById(Resource):
     def get(self,id):
-        location = db.session.get(Location,id)
+        location = Location.query.filter_by(id=id).first().to_dict()
         return make_response(jsonify(location), 200)
-    
-class Location(Resource):
+
+    def delete(self, id):
+        location = db.session.get(Location, id)
+        db.session.delete(location)
+        db.session.commit()
+        return {}, 204
+class Locations(Resource):
     def get(self):
         locations = [location.to_dict() for location in Location.query.all()]
         return make_response(jsonify(locations), 200)
@@ -101,19 +95,49 @@ class Location(Resource):
             name = data['name'],
             address = data['address'],
             latitude = data['latitude'],
-            longtitide = data['longtitide']
+            longtitude = data['longtitude']
         )
         db.session.add(new_location)
         db.session.commit()
         return make_response(new_location.to_dict(), 201)
     
-    
 api.add_resource(Users, URL_PREFIX + '/users')
-api.add_resource(Location, URL_PREFIX + '/locations')
-api.add_resource(Review, URL_PREFIX + '/reviews')
+api.add_resource(Locations, URL_PREFIX + '/locations')
+api.add_resource(Reviews, URL_PREFIX + '/reviews')
 api.add_resource(UserById, URL_PREFIX + '/users/<int:id>')
 api.add_resource(ReviewById, URL_PREFIX + '/reviews/<int:id>')
 api.add_resource(LocationById, URL_PREFIX + '/locations/<int:id>')
+
+# SESSION LOGIN/LOGOUT#
+
+@app.post(URL_PREFIX + '/login')
+def login():
+    data = request.json
+    email=data.get('email')
+    user = User.query.filter(User.email == email).first()
+    if user and bcrypt.check_password_hash(user.password_hash, data['password']):
+        session["user_id"] = user.id
+        return user.to_dict(), 201
+    else:
+        return { "message": "Invalid email or password" }, 401
+    
+
+@app.get(URL_PREFIX + '/check_session')
+def check_session():
+    user_id = session.get("user_id")
+    user = User.query.filter(User.id == user_id).first()
+    if user:
+        return user.to_dict(), 200
+    else:
+        return { "message": "No logged in user" }, 401
+    
+
+@app.delete(URL_PREFIX + '/logout')
+def logout():
+    user_id = session.get("user_id")
+    user = User.query.filter(User.id == user_id).first()
+    session.pop(user)
+    return {}, 204
 
 
 if __name__ == '__main__':

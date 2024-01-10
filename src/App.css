@@ -1,0 +1,256 @@
+body {
+    /* background: linear-gradient(225deg, #e0773e 0%, #690070 100%); */
+    background: radial-gradient(circle at right bottom, #262626 , #0f0b11);
+    background-size: cover;
+    /* height:100vh; */
+    background-attachment: fixed;
+    /* font-family: monospace, 'Courier New', Courier, monospace ; */
+    /* font-family: Arial, sans-serif; */
+    font: 1rem "Fira Sans", sans-serif;
+    color: #f9e38b;
+    
+}
+
+button{
+    border: none;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 16px;
+    width: 7%;
+    color: #f9f987;
+    background-color: #252227;
+    border: #fef7d5;
+    border-style: ridge;
+}
+
+#logo {
+    width: 30em;
+    height: auto;
+}
+#login-logo {
+    width: 40em;
+    height: auto;
+}
+
+.login-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #f9e688;
+    margin-top: 2rem;
+}
+
+.login-box a {
+    color: #dddfff;
+    text-decoration: none;
+}
+
+.login-box input{
+    border: none;
+    /* padding: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 16px;
+    width: 20%;
+    height: 1.5rem;
+}
+
+.signup-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #f9e688;
+}
+.signup-box input{
+    border: none;
+    /* padding: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0.5%;
+    cursor: pointer;
+    border-radius: 16px;
+    width: 30%;
+    height: 1.5rem;
+}
+
+.signup-box a{
+    color: #dddfff;
+    text-decoration: none;
+}
+
+#upload{
+    margin-left: 6%;
+}
+
+#upload-input{
+    border-radius: 0%;
+    width: auto;
+}
+
+.signup-box button{
+    /* padding: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 16px;
+    width: 20%;
+    height: 1.7rem;
+
+}
+
+.add-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #f9e688;
+}
+
+.add-box input{
+    border: none;
+    /* padding: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 16px;
+    width: 30%;
+    height: 1.5rem;
+}
+
+#review-box{
+    height: 7rem;
+    border: none;
+    /* padding: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 16px;
+    width: 30%;
+
+}
+
+#avatar_home{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-left: 65%;
+}
+
+.navbar {
+    /* justify-content: space-between; */
+    /* align-items: center;
+    height: 6vh;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr ; 
+    background-attachment: fixed;
+    background-color: #8a23ce23;
+    color: #d0d085; */
+    height: 100%;
+    width: 13%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+
+.navbar a {
+    padding: 8px 8px 8px 32px;
+    margin-top: 10%;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #f1f1f1;
+}
+
+.navbar img {
+    margin-left: 3%;
+    width: 90%;
+    height: auto;
+
+}
+
+#add {
+    margin-top: 5%;
+    background-color: #fff6c7;
+    width: 3rem;
+    border-radius: 65%;
+    display: grid;
+    margin-left: 94%;
+}
+#add img {
+    width: 1.5rem;
+    height: auto;
+}
+
+.review-box {
+    margin: 2rem;
+    padding: 1rem 15rem;
+    /* border: #f9e688 ;
+    border-style: 1px, solid; */
+    border-radius: 1.5%;
+    margin-left: 14%;
+}
+
+.review-box h5{
+    text-align: right;
+}
+
+.review-box img{
+    display: block;
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logout-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #f9e688;
+    margin-top: 10%;
+    margin-bottom: auto;
+}
+
+.user-review {
+    display: grid;
+    float: right;
+    text-align: right;
+}
+
+.review content{
+    /* margin-top: 2rem; */
+}
+#user-avatar {
+    margin-top: 5rem;
+    width: 400px;
+    height: auto;
+    border-radius: 5%;
+}

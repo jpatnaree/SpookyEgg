@@ -1,7 +1,7 @@
-from sqlalchemy_serializer import SerializerMixin
-from sqlalchemy.ext.associationproxy import association_proxy
-
 from config import db
+from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy_serializer import SerializerMixin
+
 
 class User(db.Model, SerializerMixin):
     __tablename__='users_table'
@@ -21,15 +21,15 @@ class User(db.Model, SerializerMixin):
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews_table'
     
-    serialize_rules = ('-user.reviews', 'location,reviews',)
+    serialize_rules = ('-user.reviews', 'location.reviews',)
     
     id = db.Column(db.Integer, primary_key=True)
     title =  db.Column(db.String)
-    spooky_review =  db.Column(db.String)
+    spooky_score = db.Column(db.Integer, nullable=False)
+    spooky_review =  db.Column(db.String, nullable=False)
+    hospitality_score = db.Column(db.Integer)
     hospitality_review =  db.Column(db.String)
     image = db.Column(db.String)
-    hostpitality_score = db.Column(db.Integer)
-    spooky_score = db.Column(db.Integer)
     date = db.Column(db.String, nullable=False)
     
     user_id = db.Column(db.Integer, db.ForeignKey('users_table.id'), nullable=False)
@@ -46,7 +46,7 @@ class Location(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     address = db.Column(db.String)
     latitude = db.Column(db.String)
-    longtitide = db.Column(db.String)
+    longtitude = db.Column(db.String)
     
     reviews = db.relationship('Review', back_populates='location', cascade ='all, delete-orphan')
     Users = association_proxy('reviews', 'user')

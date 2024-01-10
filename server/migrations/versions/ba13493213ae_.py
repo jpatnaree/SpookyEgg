@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a874af268d97
+Revision ID: ba13493213ae
 Revises: 
-Create Date: 2024-01-08 09:39:31.626806
+Create Date: 2024-01-09 15:11:20.591832
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a874af268d97'
+revision = 'ba13493213ae'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,7 +23,7 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('address', sa.String(), nullable=True),
     sa.Column('latitude', sa.String(), nullable=True),
-    sa.Column('longtitide', sa.String(), nullable=True),
+    sa.Column('longtitude', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users_table',
@@ -38,11 +38,11 @@ def upgrade():
     op.create_table('reviews_table',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=True),
-    sa.Column('spooky_review', sa.String(), nullable=True),
+    sa.Column('spooky_score', sa.Integer(), nullable=False),
+    sa.Column('spooky_review', sa.String(), nullable=False),
+    sa.Column('hospitality_score', sa.Integer(), nullable=True),
     sa.Column('hospitality_review', sa.String(), nullable=True),
     sa.Column('image', sa.String(), nullable=True),
-    sa.Column('hostpitality_score', sa.Integer(), nullable=True),
-    sa.Column('spooky_score', sa.Integer(), nullable=True),
     sa.Column('date', sa.String(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('location_id', sa.Integer(), nullable=False),
