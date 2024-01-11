@@ -67,7 +67,7 @@ class Reviews(Resource):
             hospitality_score = data['hospitality_score'],
             date = current_time,
             user_id = data['user_id'],
-            location_id  = data['location_id']
+            location_name  = data['location_name']
         )
         db.session.add(new_review)
         db.session.commit()
@@ -134,9 +134,23 @@ def check_session():
 
 @app.delete(URL_PREFIX + '/logout')
 def logout():
+    print("Logout route (DELETE) in backend accessed successfully.")
+    print("Attempting to retrieve session credential for user ID.")
     user_id = session.get("user_id")
+    print("User ID credential retrieved via session storage.")
+    print("Attempting to retrieve matching user based on matched ID.")
     user = User.query.filter(User.id == user_id).first()
-    session.pop(user)
+    print("Matching user (based on ID) retrieved successfully.")
+    print("Attempting to remove user from session storage.")
+    
+    # NOTE: To remove the user, we can leverage the same functionality provided 
+    #       by `session['user_id'] = ...`, where instead of passing in a 
+    #       object attribute corresponding to the user's ID, we can simply pass
+    #       in nothing, or `None`.
+    # session.pop(user)
+    session["user_id"] = None
+    print("User removed successfully.")
+    print("Returning empty user object with 204 status code.")
     return {}, 204
 
 

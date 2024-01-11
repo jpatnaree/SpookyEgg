@@ -1,5 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp({ attemptSignup, currentUser }) {
 
@@ -8,7 +8,7 @@ function SignUp({ attemptSignup, currentUser }) {
   const [userInfo, setUserInfo] = useState({
     first_name: '',
     last_name: '',
-    avatar: '',
+    image: '',
     email: '',
     password: ''
 });
@@ -31,14 +31,14 @@ const handleSubmit = (e) => {
         <form
         onSubmit={(e)=>{
           handleSubmit(e)
-          navigate('/login')
+          navigate('/')
       }}
         >
         <input type="text" onChange={handleChange} name="first_name" placeholder="First name" /><br/>
         <input type="text" onChange={handleChange} name="last_name" placeholder="Last name" /><br/>
         <input type="text" onChange={handleChange} name="image" placeholder="Display Profile Picture Url" /><br/>
-        <label id='upload'>Or: </label>
-        <input id='upload-input' onChange={handleChange} type="file" name="image" placeholder="Display image or image url" /> <br/>
+        {/* <label id='upload'>Or: </label> */}
+        {/* <input id='upload-input' onChange={handleChange} type="file" name="image" placeholder="Display image or image url" /> <br/> */}
         <input type="text" onChange={handleChange} name="email" placeholder="Email" /><br/>
         <input type="password" onChange={handleChange} name="password" placeholder="Password" /><br/>
         

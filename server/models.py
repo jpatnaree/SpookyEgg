@@ -33,7 +33,7 @@ class Review(db.Model, SerializerMixin):
     date = db.Column(db.String, nullable=False)
     
     user_id = db.Column(db.Integer, db.ForeignKey('users_table.id'), nullable=False)
-    location_id = db.Column(db.Integer, db.ForeignKey('locations_table.id'), nullable=False)
+    location_name = db.Column(db.String, db.ForeignKey('locations_table.name'), nullable=False)
     user = db.relationship('User', back_populates='reviews')
     location = db.relationship('Location', back_populates='reviews')
     

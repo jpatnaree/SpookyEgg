@@ -1,5 +1,5 @@
-import NavBar from "../components/navbar";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../components/Navbar";
 
 function Logout({logout, currentUser}) {
 
@@ -19,7 +19,7 @@ function Logout({logout, currentUser}) {
             >Log out</button>
 
         </div>
-        </>): null
+        </>): navigate('/')
 
     return <>{isLockedin}</>;
     }

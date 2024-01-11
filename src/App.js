@@ -1,14 +1,15 @@
 
-import './App.css';
-import {createBrowserRouter, RouterProvider} from "react-router-dom"
-import Login from './pages/login';
-import SignUp from './pages/signup';
-import Home from './pages/home';
-import Map from './pages/map';
-import Add from './pages/add';
-import Logout from './pages/logout';
-import UserInfo from './pages/user_info';
 import { useEffect, useState } from 'react';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import './App.css';
+import Add from './pages/Add';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Logout from './pages/Logout';
+import Map from './pages/Map';
+import SignUp from './pages/Signup';
+import SingleUser from './pages/Single_user';
+import UserInfo from './pages/User_info';
 
 
 function App() {
@@ -21,20 +22,30 @@ function App() {
     'Accept': 'application/json'
   }
   
-
+  useEffect(() => {
+    fetch(`/api/check_session`)
+    .then(response => {
+      if (response.ok) {
+        response.json()
+        .then(userData => {setCurrentUser(userData)})
+      } 
+    })
+    
+  },[])
+  // console.log(currentUser)
 
   useEffect(()=> {
-    fetch(`http://127.0.0.1:5555/api/reviews`)
+    fetch(`/api/reviews`)
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      // console.log(data);
       setAllReviews(data)
     })
   },[])
 
     // SIGNUP //
     async function attemptSignup(userInfo) {
-      const res = await fetch('http://127.0.0.1:5555/api/users', {
+      const res = await fetch('/api/users', {
         method: 'POST',
         headers: POST_HEADERS,
         body: JSON.stringify(userInfo)
@@ -49,7 +60,7 @@ function App() {
   
     // LOGIN //
     async function attemptLogin(userInfo) {
-      const res = await fetch('http://127.0.0.1:5555/api/login', {
+      const res = await fetch('/api/login', {
         method: 'POST',
         headers: POST_HEADERS,
         body: JSON.stringify(userInfo)
@@ -64,9 +75,15 @@ function App() {
   
     // LOGOUT //
     function logout() {
+      console.log("Attempting null value setter call.")
       setCurrentUser(null)
-      fetch('http://127.0.0.1:5555/api/logout', { method: "DELETE" })
+      console.log("Setter for current user successfully called with null value set.")
+      console.log("Attempting fetch to backend logout route with DELETE method.")
+      fetch('/api/logout', { method: "DELETE" })
+      console.log("Fetch (DELETE) for logout successfully called.")
     }
+
+
 
 
   const routes = [
@@ -84,11 +101,11 @@ function App() {
     },
     {
       path: "/home",
-      element: <Home allReviews={allReviews} currentUser={currentUser} />
+      element: <Home allReviews={allReviews} setAllReviews={setAllReviews} currentUser={currentUser} />
     },
     {
       path: "/add",
-      element: <Add currentUser={currentUser} />
+      element: <Add currentUser={currentUser} allReviews={allReviews} setAllReviews={setAllReviews} />
     },
     {
       path: "/map",
@@ -97,6 +114,10 @@ function App() {
     {
       path: "/user_info",
       element: <UserInfo currentUser={currentUser} />
+    },
+    {
+      path: "/user_info/:id",
+      element: <SingleUser allReviews={allReviews} currentUser={currentUser} />,
     }
 
   ]

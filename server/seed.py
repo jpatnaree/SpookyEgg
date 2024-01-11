@@ -39,7 +39,7 @@ if __name__ == '__main__':
                             hospitality_review = "very nice and stylish hotel",
                             image = "https://s3.amazonaws.com/Ocoos_Sp_Content/2915/product/4-37c9b9bfdc5473d4b36f8f1d3c71745c.jpg",
                             user_id = 5,
-                            location_id = 2,
+                            location_name = 'The Hotel Chelsea',
                             date = time.strftime("%Y-%m-%d %H:%M:%S")
         ))
         reviews.append(Review(title = "What the ?!?!", 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
                             hospitality_score = 4,
                             hospitality_review = "clean and solid",
                             user_id = 7,
-                            location_id = 1,
+                            location_name = 'The Algonquin Hotel',
                             date = time.strftime("%Y-%m-%d %H:%M:%S")
         ))
         db.session.add_all(reviews)

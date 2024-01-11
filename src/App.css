@@ -210,16 +210,25 @@ button{
 }
 
 .review-box {
-    margin: 2rem;
-    padding: 1rem 15rem;
+    /* margin: 2rem; */
+    padding: 1rem 10rem;
     /* border: #f9e688 ;
     border-style: 1px, solid; */
-    border-radius: 1.5%;
-    margin-left: 14%;
+    /* border-radius:20%; */
+    /* display: flex; */
+    border: #262626;
+    width:40%;
+    height:80%;
+    margin-left: 20rem;
+
 }
 
-.review-box h5{
+.review-box h6{
     text-align: right;
+}
+
+#tabtab{
+    margin-left: 1rem;
 }
 
 .review-box img{
@@ -227,6 +236,10 @@ button{
     width: 450px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.review-box:hover{
+    background-color: rgb(37, 37, 37);
 }
 
 .logout-box {
