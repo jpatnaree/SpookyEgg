@@ -6,22 +6,43 @@ import Add from './pages/Add';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+import Mappage from './pages/Mappage';
 import SignUp from './pages/Signup';
 import SingleUser from './pages/Single_user';
 import UserInfo from './pages/User_info';
-import Mappage from './pages/Mappage';
 
 
 function App() {
 
   const [allReviews, setAllReviews] = useState([])
+  const [allComments, setAllComments] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
 
   const POST_HEADERS = {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   }
+
+  // FETCH //
+  useEffect(()=> {
+    fetch(`/api/reviews`)
+    .then(response => response.json())
+    .then(data => {
+      // console.log(data);
+      setAllReviews(data)
+    })
+  },[])
+
+  useEffect(()=> {
+    fetch(`/api/comments`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setAllComments(data)
+    })
+  },[])
   
+  // CHECK SESSION//
   useEffect(() => {
     fetch(`/api/check_session`)
     .then(response => {
@@ -33,15 +54,6 @@ function App() {
     
   },[])
   // console.log(currentUser)
-
-  useEffect(()=> {
-    fetch(`/api/reviews`)
-    .then(response => response.json())
-    .then(data => {
-      // console.log(data);
-      setAllReviews(data)
-    })
-  },[])
 
     // SIGNUP //
     async function attemptSignup(userInfo) {
@@ -101,7 +113,7 @@ function App() {
     },
     {
       path: "/home",
-      element: <Home allReviews={allReviews} setAllReviews={setAllReviews} currentUser={currentUser} />
+      element: <Home allReviews={allReviews} setAllReviews={setAllReviews} currentUser={currentUser} allComments={allComments} setAllComments={setAllComments} />
     },
     {
       path: "/add",

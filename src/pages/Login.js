@@ -17,7 +17,7 @@ function Login({attemptLogin, currentUser}) {
 
   function handleSubmit(e) {
       e.preventDefault()
-      console.log(userInfo)
+      // console.log(userInfo)
       attemptLogin(userInfo)
       setClicked(true)
   }

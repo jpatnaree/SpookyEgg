@@ -118,11 +118,13 @@ class Comments(Resource):
         return make_response(jsonify(comments), 200)
     
     def post(self):
+        current_time = time.strftime("%Y-%m-%d %H:%M:%S")
         data = request.get_json()
         new_comment = Comment(
             content = data['content'],
             review_id = data['review_id'],
-            poster_id = data['poster_id']
+            poster_id = data['poster_id'],
+            date = current_time
         )
         db.session.add(new_comment)
         db.session.commit()

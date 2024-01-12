@@ -6,7 +6,7 @@ from sqlalchemy_serializer import SerializerMixin
 class User(db.Model, SerializerMixin):
     __tablename__='users_table'
     
-    serialize_rules = ('-reviews.user', '-comments.user',)
+    serialize_rules = ('-reviews.user', '-comments.user', '-reviews.comments.review','-reviews.comments.user','-commnents.review.user')
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, nullable=False)
@@ -22,7 +22,7 @@ class User(db.Model, SerializerMixin):
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews_table'
     
-    serialize_rules = ('-user.reviews', 'location.reviews', '-comment.review',)
+    serialize_rules = ('-user.reviews', '-location.reviews', '-comments.review', '-user.comments',)
     
     id = db.Column(db.Integer, primary_key=True)
     title =  db.Column(db.String)
@@ -43,11 +43,12 @@ class Review(db.Model, SerializerMixin):
 class Comment(db.Model, SerializerMixin):
     __tablename__ = 'comments_table'
     
-    serialize_rules = ('-user.comments', '-review.comments',)
-
+    serialize_rules = ('-user.comments', '-review.comments', '-review.location.reviews', '-user.reviews')
     
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, nullable=False)
+    date = db.Column(db.String, nullable=False)
+    
     
     review_id = db.Column(db.Integer, db.ForeignKey('reviews_table.id'), nullable=False)
     poster_id = db.Column(db.Integer, db.ForeignKey('users_table.id'), nullable=False)
@@ -58,7 +59,7 @@ class Comment(db.Model, SerializerMixin):
 class Location(db.Model, SerializerMixin):
     __tablename__ = 'locations_table'
     
-    serialize_rules = ('-reviews.location',)
+    serialize_rules = ('-reviews.location', '-users.comments', '-users.comments', '-reviews.comments.review', '--reviews.comments.location', '-reviews.user.locations', '-reviews.user.comments',)
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)

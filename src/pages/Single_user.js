@@ -15,7 +15,7 @@ function SingleUser({allReviews}) {
 
     const target = allReview.user
 
-    const filtered = allReviews.map( review => {
+    const filtered = allReviews.map(review => {
         if(Number(review.user_id) === Number(id)) {
             return <UserReview key={review.id} review={review} />
         }

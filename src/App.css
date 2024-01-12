@@ -69,7 +69,7 @@ button{
     text-decoration: none;
     display: inline-block;
     margin: 1%;
-    cursor: pointer;
+    /* cursor: pointer; */
     border-radius: 16px;
     width: 20%;
     height: 1.5rem;
@@ -89,7 +89,6 @@ button{
     text-decoration: none;
     display: inline-block;
     margin: 0.5%;
-    cursor: pointer;
     border-radius: 16px;
     width: 30%;
     height: 1.5rem;
@@ -137,16 +136,27 @@ button{
     text-decoration: none;
     display: inline-block;
     margin: 1%;
-    cursor: pointer;
     border-radius: 16px;
     width: 30%;
     height: 1.5rem;
 }
 
-#review-box{
-    height: 7rem;
+.add-box textarea{
     border: none;
     /* padding: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1%;
+    border-radius: 16px;
+    width: 30%;
+    height: 4rem;
+}
+
+/* #review-box{
+    height: 2rem;
+    border: none;
+    padding: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -154,7 +164,18 @@ button{
     cursor: pointer;
     border-radius: 16px;
     width: 30%;
+} */
 
+.reply-box{
+    height: 2rem;
+    border: none;
+    /* padding: 5px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1%;
+    border-radius: 16px;
+    width: 25%;
 }
 
 #avatar_home{
@@ -221,19 +242,35 @@ button{
     height: auto;
 }
 
-.review-box {
-    /* margin: 2rem; */
+.reply-box{
     padding: 1rem 10rem;
-    /* border: #f9e688 ;
-    border-style: 1px, solid; */
-    /* border-radius:20%; */
-    /* display: flex; */
-    border: #262626;
     width:40%;
     height:80%;
     margin-left: 20rem;
-
+    border-radius: 16px;
 }
+
+.reply-box button{
+    width: 5rem;
+}
+
+.reply-box input{
+    width: 22rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1%;
+    border-radius: 16px;
+}
+
+.review-box {
+    padding: 1rem 10rem;
+    width:40%;
+    height:80%;
+    margin-left: 20rem;
+    border-radius: 16px;
+}
+
 
 .review-box h6{
     text-align: right;
@@ -270,7 +307,7 @@ button{
     text-align: right;
 }
 
-.review content{
+.review-content{
     /* margin-top: 2rem; */
 }
 

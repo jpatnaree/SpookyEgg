@@ -66,9 +66,9 @@ function Add({currentUser , setAllReviews , allReviews}) {
                 <input onChange={handleInput} type="text" name="location_name" placeholder="Location name *required" /><br/>
                 <input onChange={handleInput} type="text" name="title" placeholder="Title" /><br/>
                 <input onChange={handleInput} type="number" name='spooky_score' min="1" max="5" placeholder="Spooky Score - enter number between 1 - 5 *required"/><br/>
-                <textarea onChange={handleInput} id='review-box' type="text" name="spooky_review" placeholder="Spooky Review *required" /><br/>
+                <textarea onChange={handleInput} type="text" name="spooky_review" placeholder="Spooky Review *required" /><br/>
                 <input onChange={handleInput} type="number" name='hospitality_score' min="1" max="5" placeholder="Hospitality Score - enter number between 1 - 5"/><br/>
-                <textarea onChange={handleInput} id='review-box' type="text" name="hospitality_review" placeholder='Hospitality Review' /><br/>
+                <textarea onChange={handleInput} type="text" name="hospitality_review" placeholder='Hospitality Review' /><br/>
                 <input onChange={handleInput} type="text" name="image" placeholder="Image Url" /><br/>
                 {/* <label id='upload'>Or:</label> */}
                 {/* <input id='upload-input' type="file" name="image" placeholder="Display image or image url" /> <br/> */}

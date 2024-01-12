@@ -1,17 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from '../components/Navbar';
 import Review from '../components/Review';
+// import Comment from "./Comment";
 
 
 
-function Home({allReviews, setAllReviews, currentUser}) {
+function Home({allReviews, setAllReviews, currentUser, allComments, setAllComments}) {
 
   const navigate = useNavigate()
 
   
   
   const display_reviews = allReviews.map(review => {
-    return <Review key={review.id} review={review} currentUser={currentUser} />
+    return <Review key={review.id} review={review} currentUser={currentUser} allComments={allComments} setAllComments={setAllComments} />
   })
 
   // sorting by date
@@ -20,7 +21,17 @@ function Home({allReviews, setAllReviews, currentUser}) {
     // to get a value that is either negative, positive, or zero.
     return new Date(b.date) - new Date(a.date);
   });
-  // console.log(sorting);
+
+  const reviewId = allReviews.map( review => review.id)
+
+  console.log(reviewId);
+
+//   const commentList = allReviews.comment.map(comment => {
+//     if (comment.review_id === .id) {
+//         return <Comment key={comment.id} comment={comment} />
+//     }
+// })
+
   
     return (
       <>
