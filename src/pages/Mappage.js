@@ -22,7 +22,7 @@ function Mappage() {
           mapStyle="mapbox://styles/mapbox/streets-v9"
           >
             <FullscreenControl />
-            <Marker longitude={-73.997402} latitude={40.713206} anchor="top" offsetLeft={0} offsetTop={0} >
+            <Marker longitude={-73.997402} latitude={40.713206} anchor="top" offsetLeft={40} offsetTop={40} >
                   <img id="pin" src="https://i.imgur.com/itE68xa.png" alt='pin' />
             </Marker>
 

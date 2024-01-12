@@ -5,7 +5,7 @@ from config import api, app, bcrypt, db
 from flask import jsonify, make_response, request, session
 from flask_restful import Resource
 # Add your model imports
-from models import Location, Review, User
+from models import Location, Review, User, Comment
 
 URL_PREFIX = '/api'
 
@@ -100,13 +100,45 @@ class Locations(Resource):
         db.session.add(new_location)
         db.session.commit()
         return make_response(new_location.to_dict(), 201)
+
+class CommentById(Resource):
+    def get(self,id):
+        comment = Comment.query.filter_by(id=id).first().to_dict()
+        return make_response(jsonify(comment), 200)
+    
+    def delete(self,id):
+        comment = db.session.get(Comment, id)
+        db.session.delete(comment)
+        db.session.commit()
+        return {}, 204
+    
+class Comments(Resource):
+    def get(self):
+        comments = [c.to_dict() for c in Comment.query.all()]
+        return make_response(jsonify(comments), 200)
+    
+    def post(self):
+        data = request.get_json()
+        new_comment = Comment(
+            content = data['content'],
+            review_id = data['review_id'],
+            poster_id = data['poster_id']
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        return make_response(new_comment.to_dict(), 201)
+    
+    
     
 api.add_resource(Users, URL_PREFIX + '/users')
 api.add_resource(Locations, URL_PREFIX + '/locations')
 api.add_resource(Reviews, URL_PREFIX + '/reviews')
+api.add_resource(Comments, URL_PREFIX + '/comments')
 api.add_resource(UserById, URL_PREFIX + '/users/<int:id>')
-api.add_resource(ReviewById, URL_PREFIX + '/reviews/<int:id>')
 api.add_resource(LocationById, URL_PREFIX + '/locations/<int:id>')
+api.add_resource(ReviewById, URL_PREFIX + '/reviews/<int:id>')
+api.add_resource(CommentById, URL_PREFIX + '/comments/<int:id>')
+
 
 # SESSION LOGIN/LOGOUT#
 

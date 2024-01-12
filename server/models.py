@@ -6,7 +6,7 @@ from sqlalchemy_serializer import SerializerMixin
 class User(db.Model, SerializerMixin):
     __tablename__='users_table'
     
-    serialize_rules = ('-reviews.user',)
+    serialize_rules = ('-reviews.user', '-comments.user',)
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, nullable=False)
@@ -17,11 +17,12 @@ class User(db.Model, SerializerMixin):
     
     reviews = db.relationship('Review', back_populates='user', cascade ='all, delete-orphan')
     locations = association_proxy('reviews', 'location')
+    comments = db.relationship('Comment', back_populates='user', cascade ='all, delete-orphan' )
 
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews_table'
     
-    serialize_rules = ('-user.reviews', 'location.reviews',)
+    serialize_rules = ('-user.reviews', 'location.reviews', '-comment.review',)
     
     id = db.Column(db.Integer, primary_key=True)
     title =  db.Column(db.String)
@@ -36,6 +37,23 @@ class Review(db.Model, SerializerMixin):
     location_name = db.Column(db.String, db.ForeignKey('locations_table.name'), nullable=False)
     user = db.relationship('User', back_populates='reviews')
     location = db.relationship('Location', back_populates='reviews')
+    comments = db.relationship('Comment', back_populates='review', cascade ='all, delete-orphan')
+    
+    
+class Comment(db.Model, SerializerMixin):
+    __tablename__ = 'comments_table'
+    
+    serialize_rules = ('-user.comments', '-review.comments',)
+
+    
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String, nullable=False)
+    
+    review_id = db.Column(db.Integer, db.ForeignKey('reviews_table.id'), nullable=False)
+    poster_id = db.Column(db.Integer, db.ForeignKey('users_table.id'), nullable=False)
+    
+    user = db.relationship('User', back_populates='comments')
+    review = db.relationship('Review', back_populates='comments')
     
 class Location(db.Model, SerializerMixin):
     __tablename__ = 'locations_table'
