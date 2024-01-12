@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Map, {Marker} from 'react-map-gl';
+import Map, { FullscreenControl, Marker } from 'react-map-gl';
 import NavBar from "../components/Navbar";
-import {useState} from 'react';
 
 
 function Mappage() {
@@ -13,7 +12,7 @@ function Mappage() {
         <NavBar />
         <div className="map">
             <Map
-          mapboxAccessToken="pk.eyJ1IjoicGF0bmFyZWUyMDA0IiwiYSI6ImNscjhvZ2RieDBtODEyanBjdWw3azF1amMifQ.bbXhmQ5av8Xj9Io8y9NnlQ"
+          mapboxAccessToken={process.env.REACT_APP_MAPBOX}
           initialViewState={{
             longitude: -73.997402,
             latitude: 40.713206,
@@ -22,8 +21,8 @@ function Mappage() {
           style={{width: "86vw", height: "97vh"}}
           mapStyle="mapbox://styles/mapbox/streets-v9"
           >
-            
-            <Marker longitude={-73.997402} latitude={40.713206} anchor="top" >
+            <FullscreenControl />
+            <Marker longitude={-73.997402} latitude={40.713206} anchor="top" offsetLeft={0} offsetTop={0} >
                   <img id="pin" src="https://i.imgur.com/itE68xa.png" alt='pin' />
             </Marker>
 
