@@ -6,10 +6,10 @@ import Add from './pages/Add';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
-import Map from './pages/Map';
 import SignUp from './pages/Signup';
 import SingleUser from './pages/Single_user';
 import UserInfo from './pages/User_info';
+import Mappage from './pages/Mappage';
 
 
 function App() {
@@ -109,7 +109,7 @@ function App() {
     },
     {
       path: "/map",
-      element: <Map currentUser={currentUser} />
+      element: <Mappage currentUser={currentUser} />
     },
     {
       path: "/user_info",

@@ -10,6 +10,18 @@ body {
     color: #f9e38b;
     
 }
+div {
+    height: 0%;
+}
+
+#pin {
+    width: 20px;
+    height: auto;
+}
+
+.mapboxgl-ctrl-attrib-inner {
+    display: none;
+}
 
 button{
     border: none;
@@ -261,9 +273,14 @@ button{
 .review content{
     /* margin-top: 2rem; */
 }
+
 #user-avatar {
     margin-top: 5rem;
     width: 400px;
     height: auto;
     border-radius: 5%;
+}
+
+.map {
+    margin-left: 13.2%;
 }

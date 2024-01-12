@@ -31,7 +31,7 @@ const handleSubmit = (e) => {
         <form
         onSubmit={(e)=>{
           handleSubmit(e)
-          navigate('/')
+          // navigate('/')
       }}
         >
         <input type="text" onChange={handleChange} name="first_name" placeholder="First name" /><br/>
