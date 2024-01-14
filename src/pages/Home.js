@@ -22,9 +22,9 @@ function Home({allReviews, setAllReviews, currentUser, allComments, setAllCommen
     return new Date(b.date) - new Date(a.date);
   });
 
-  const reviewId = allReviews.map( review => review.id)
+  // const reviewId = allReviews.map( review => review.id)
 
-  console.log(reviewId);
+  console.log(allReviews.map(review => review.location.name));
 
 //   const commentList = allReviews.comment.map(comment => {
 //     if (comment.review_id === .id) {

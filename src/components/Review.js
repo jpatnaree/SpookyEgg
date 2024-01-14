@@ -6,8 +6,8 @@ import Comment from "./Comment";
 function Review({review, currentUser, allComments, setAllComments, allReviews, setAllReviews}) {
 
     const checkUser = currentUser.id === review.user_id? `/user_info`: `/user_info/${review.user_id}`;
-    const [submittedForm, setSubmittedForm] = useState(false);
-    const [newReview, setNewReview] = useState({
+    // const [submittedForm, setSubmittedForm] = useState(false);
+    const [newComment, setNewComment] = useState({
         content: '',
         review_id: review.id,
         poster_id: currentUser.id
@@ -21,7 +21,7 @@ function Review({review, currentUser, allComments, setAllComments, allReviews, s
 
     function handleInput(e) {
         const {name, value} = e.target
-        setNewReview({...newReview, [name]: value})
+        setNewComment({...newComment, [name]: value})
     }
 
     const display_comments = allComments.map( comment => {
@@ -38,20 +38,21 @@ function Review({review, currentUser, allComments, setAllComments, allReviews, s
             "Content-Type": "application/json",
             "Accept": "application/json"
             },
-            body: JSON.stringify(newReview)
+            body: JSON.stringify(newComment)
         })
         .then(resp => resp.json())
         .then(newData => {
             setAllComments([...allComments, newData])
-            console.log(allComments)
-        })}
+            // console.log(allComments)
+        })
+    
+    }
     
         function deleteReview(id) {
             setAllReviews(allReviews.filter((r) => {
                 return r.id !== id}))
             fetch(`/api/reviews/${id}`, {
                 method: "DELETE"
-    
             })
         };
 
@@ -77,7 +78,7 @@ function Review({review, currentUser, allComments, setAllComments, allReviews, s
                 {currentUser.id === review.user.id?
                 <button
                 key={id} onClick={() => deleteReview(id)}
-                ><img id='dlt-btn' src="https://i.imgur.com/67tSRay.png" alt='delete' /></button>: null}
+                ><img id='dlt-btn' src="https://i.imgur.com/9N3AONk.png" alt='delete' /></button>: null}
             </div>
             </div>
             <div className="reply-box">

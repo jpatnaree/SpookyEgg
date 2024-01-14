@@ -37,7 +37,7 @@ function App() {
     fetch(`/api/comments`)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      // console.log(data);
       setAllComments(data)
     })
   },[])

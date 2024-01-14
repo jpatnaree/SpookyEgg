@@ -312,6 +312,7 @@ button{
 .review-content button{
     float: right;
     margin-top: -1rem;
+    /* background-color: #5a5a5a80; */
 }
 
 #user-avatar {

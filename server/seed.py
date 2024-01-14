@@ -45,7 +45,7 @@ if __name__ == '__main__':
                             hospitality_review = "very nice and stylish hotel",
                             image = "https://s3.amazonaws.com/Ocoos_Sp_Content/2915/product/4-37c9b9bfdc5473d4b36f8f1d3c71745c.jpg",
                             user_id = 5,
-                            location_id = '2',
+                            location_id = 2,
                             date = time.strftime("%Y-%m-%d %H:%M:%S")
         ))
         reviews.append(Review(title = "What the ?!?!", 
@@ -54,16 +54,16 @@ if __name__ == '__main__':
                             hospitality_score = 5,
                             hospitality_review = "clean and solid",
                             user_id = 7,
-                            location_id = '1',
+                            location_id = 1,
                             date = time.strftime("%Y-%m-%d %H:%M:%S")
         ))
         reviews.append(Review(title = "Silly me", 
                             spooky_score = 1,
-                            spooky_review = "There was a scary looking shadow wandering around the hallway at 3 am. I was so scared to go out of my room to pick up the food I ordered so I bribe my delivery guy to deliver to my door with extra $20 tip. The next day I found out that ghost thing was just a drunk guy from the other floor couldn't find his room",
+                            spooky_review = "There was a scary looking shadow wandering around the hallway at 3 am. I was so scared to go out of my room to pick up the food I ordered so I bribe my delivery guy to deliver to my door with extra $20 tip. The next day I found out that ghost thing was just a drunk guy from another floor lost his key and couldn't find his room",
                             hospitality_score = 4,
                             hospitality_review = "very beautiful hotel and friendly staff",
                             user_id = 10,
-                            location_id = '3',
+                            location_id = 3,
                             date = time.strftime("%Y-%m-%d %H:%M:%S")))
 
         # reviews.append(Review(title = fake.catch_phrase(), 
