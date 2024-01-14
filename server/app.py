@@ -58,6 +58,7 @@ class Reviews(Resource):
     def post(self):
         data = request.get_json()
         current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+        found_location = Location.query.filter(Location.name == data['location_name']).first()
         new_review = Review(
             title = data['title'],
             spooky_score = data['spooky_score'],
@@ -67,11 +68,13 @@ class Reviews(Resource):
             hospitality_score = data['hospitality_score'],
             date = current_time,
             user_id = data['user_id'],
-            location_name  = data['location_name']
+            location_id  = found_location.id
         )
         db.session.add(new_review)
         db.session.commit()
         return make_response(new_review.to_dict(), 201)
+    
+
     
     
 class LocationById(Resource):

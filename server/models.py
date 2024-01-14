@@ -34,7 +34,7 @@ class Review(db.Model, SerializerMixin):
     date = db.Column(db.String, nullable=False)
     
     user_id = db.Column(db.Integer, db.ForeignKey('users_table.id'), nullable=False)
-    location_name = db.Column(db.String, db.ForeignKey('locations_table.name'), nullable=False)
+    location_id = db.Column(db.String, db.ForeignKey('locations_table.id'), nullable=False)
     user = db.relationship('User', back_populates='reviews')
     location = db.relationship('Location', back_populates='reviews')
     comments = db.relationship('Comment', back_populates='review', cascade ='all, delete-orphan')
@@ -68,4 +68,5 @@ class Location(db.Model, SerializerMixin):
     longtitude = db.Column(db.String)
     
     reviews = db.relationship('Review', back_populates='location', cascade ='all, delete-orphan')
-    Users = association_proxy('reviews', 'user')
+    
+users = association_proxy('reviews', 'user')

@@ -125,7 +125,7 @@ function App() {
     },
     {
       path: "/user_info",
-      element: <UserInfo currentUser={currentUser} />
+      element: <UserInfo currentUser={currentUser} allReviews={allReviews} setAllReviews={setAllReviews} />
     },
     {
       path: "/user_info/:id",

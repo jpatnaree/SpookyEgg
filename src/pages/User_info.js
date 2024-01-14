@@ -1,9 +1,17 @@
 import NavBar from "../components/Navbar";
-import UserReview from "../components/User_review";
 
 
 
-function UserInfo({currentUser}) {
+function UserInfo({currentUser, allReviews, setAllReviews}) {
+
+//   function deleteReview(id) {
+//     setAllReviews(allReviews.filter((r) => {
+//         return r.id !== id}))
+//     fetch(`/api/reviews/${id}`, {
+//         method: "DELETE"
+
+//     })
+// };
 
   const display_reviews = currentUser.reviews.map(review => {
     return(
@@ -20,10 +28,13 @@ function UserInfo({currentUser}) {
           <h4 >rating: {review.hospitality_score}</h4>
           <h4 >{review.hospitality_review}</h4>
           <h6>Posted: {review.date}</h6>
+          {/* <button
+                key={review.id} onClick={() => deleteReview(review.id)}
+                ><img id='dlt-btn' src="https://i.imgur.com/67tSRay.png" alt='delete' /></button> */}
   </div>
     )
   })
-  console.log(currentUser.reviews);
+  // console.log(currentUser.reviews);
     
   return (
       <>

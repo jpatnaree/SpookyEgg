@@ -12,7 +12,7 @@ function Home({allReviews, setAllReviews, currentUser, allComments, setAllCommen
   
   
   const display_reviews = allReviews.map(review => {
-    return <Review key={review.id} review={review} currentUser={currentUser} allComments={allComments} setAllComments={setAllComments} />
+    return <Review key={review.id} review={review} currentUser={currentUser} allComments={allComments} setAllComments={setAllComments} allReviews={allReviews} setAllReviews={setAllReviews} />
   })
 
   // sorting by date

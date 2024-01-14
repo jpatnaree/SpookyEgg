@@ -1,8 +1,9 @@
 import { useState } from "react";
-import {  Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Comment from "./Comment";
 
-function Review({review, currentUser, allComments, setAllComments, allReview}) {
+
+function Review({review, currentUser, allComments, setAllComments, allReviews, setAllReviews}) {
 
     const checkUser = currentUser.id === review.user_id? `/user_info`: `/user_info/${review.user_id}`;
     const [submittedForm, setSubmittedForm] = useState(false);
@@ -12,15 +13,22 @@ function Review({review, currentUser, allComments, setAllComments, allReview}) {
         poster_id: currentUser.id
     })
     const navigate = useNavigate()
+    const {id} = review
 
-    if(submittedForm){
-        navigate('/home')
-    }
+    // if(submittedForm){
+    //     navigate('/home')
+    // }
 
     function handleInput(e) {
         const {name, value} = e.target
         setNewReview({...newReview, [name]: value})
     }
+
+    const display_comments = allComments.map( comment => {
+        if (comment.review_id === review.id) {
+            return <Comment key={comment.id} comment={comment} />
+        }
+    })
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -36,8 +44,16 @@ function Review({review, currentUser, allComments, setAllComments, allReview}) {
         .then(newData => {
             setAllComments([...allComments, newData])
             console.log(allComments)
-        })
-        }
+        })}
+    
+        function deleteReview(id) {
+            setAllReviews(allReviews.filter((r) => {
+                return r.id !== id}))
+            fetch(`/api/reviews/${id}`, {
+                method: "DELETE"
+    
+            })
+        };
 
 
     return(
@@ -58,18 +74,23 @@ function Review({review, currentUser, allComments, setAllComments, allReview}) {
                 <h4 >rating: {review.hospitality_score}</h4>
                 <h4 >{review.hospitality_review}</h4>
                 <h6>Posted: {review.date}</h6>
+                {currentUser.id === review.user.id?
+                <button
+                key={id} onClick={() => deleteReview(id)}
+                ><img id='dlt-btn' src="https://i.imgur.com/67tSRay.png" alt='delete' /></button>: null}
             </div>
             </div>
             <div className="reply-box">
                 <form 
                     onSubmit={(e)=>{
                     handleSubmit(e)
-                    setSubmittedForm(true)
+                    // setSubmittedForm(true)
                     }}
                 >
                     <label>↪ Reply </label>
                     <input onChange={handleInput} type="text" name="content" />
                     <button type="submit">Send</button>
+                {display_comments}
                 </form>
             </div>
             </>

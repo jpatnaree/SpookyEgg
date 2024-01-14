@@ -176,6 +176,7 @@ button{
     margin: 1%;
     border-radius: 16px;
     width: 25%;
+    margin-bottom: 4rem;
 }
 
 #avatar_home{
@@ -223,9 +224,10 @@ button{
 }
 
 .navbar img {
-    margin-left: 3%;
+    /* margin-left: 3%; */
     width: 90%;
     height: auto;
+    float: center;
 
 }
 
@@ -307,8 +309,9 @@ button{
     text-align: right;
 }
 
-.review-content{
-    /* margin-top: 2rem; */
+.review-content button{
+    float: right;
+    margin-top: -1rem;
 }
 
 #user-avatar {
@@ -320,4 +323,44 @@ button{
 
 .map {
     margin-left: 13.2%;
+}
+
+.comment-detail{
+    display: contents;
+    float: right;
+    margin: -1rem;
+    text-align: right;
+    /* margin-bottom: -2rem; */
+}
+
+#comment-margin{
+    margin-bottom: -2rem;
+}
+
+
+/* .comment-box{
+    display: contents;
+    float: right;
+    margin: -1rem;
+    text-align: right;
+    margin-bottom: -2rem;
+}
+
+.comment-box h5{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    margin-bottom: -2rem
+} */
+
+#comment{
+    margin-top: 0.5rem;
+    text-align: left;
+    margin-left: 3rem;
+    margin-bottom: -1rem;
+} 
+
+#dlt-btn{
+    width: 15px;
+    height: 15px;
+    /* float: right; */
 }
