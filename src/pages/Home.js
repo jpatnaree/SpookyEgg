@@ -36,7 +36,7 @@ function Home({allReviews, setAllReviews, currentUser, allComments, setAllCommen
     return (
       <>
       <NavBar />
-      <button id='add'><Link to={`/add`}><img src='https://i.imgur.com/5HKEIz0.png' alt='add'/></Link></button>
+      {/* <button id='add'><Link to={`/add`}><img src='https://i.imgur.com/5HKEIz0.png' alt='add'/></Link></button> */}
       {currentUser? display_reviews: navigate('/')}
       </>
     );

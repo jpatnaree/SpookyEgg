@@ -10,12 +10,23 @@ body {
     color: #f9e38b;
     
 }
-div {
-    height: 0%;
+.map label{
+    font-family: monospace, 'Courier New', Courier, monospace ;
+    color: #0a0a0a;
 }
 
+#mapname {
+    font-weight: 900;
+}
+
+.map{
+    font-family: monospace, 'Courier New', Courier, monospace ;
+    color: #0a0a0a;
+}
+
+
 #pin {
-    width: 20px;
+    width: 30px;
     height: auto;
 }
 
@@ -232,15 +243,16 @@ button{
 }
 
 #add {
-    margin-top: 5%;
+    /* margin-top: 5%; */
     background-color: #fff6c7;
-    width: 3rem;
-    border-radius: 65%;
-    display: grid;
-    margin-left: 94%;
+    width: 30px;
+    /* border-radius: 65%; */
+    display: inline;
+    align-items: center;
+    /* margin-left: 94%; */
 }
 #add img {
-    width: 1.5rem;
+    width: 15px;
     height: auto;
 }
 
@@ -365,3 +377,4 @@ button{
     height: 15px;
     /* float: right; */
 }
+

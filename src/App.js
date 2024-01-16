@@ -17,6 +17,7 @@ function App() {
   const [allReviews, setAllReviews] = useState([])
   const [allComments, setAllComments] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
+  const [allLocations, setAllLocations] = useState([])
 
   const POST_HEADERS = {
     'Content-Type': 'application/json',
@@ -39,6 +40,15 @@ function App() {
     .then(data => {
       // console.log(data);
       setAllComments(data)
+    })
+  },[])
+
+  useEffect(()=> {
+    fetch(`/api/locations`)
+    .then(response => response.json())
+    .then(data => {
+      // console.log(data);
+      setAllLocations(data)
     })
   },[])
   
@@ -121,7 +131,7 @@ function App() {
     },
     {
       path: "/map",
-      element: <Mappage currentUser={currentUser} />
+      element: <Mappage currentUser={currentUser} allLocations={allLocations} allReviews={allReviews} />
     },
     {
       path: "/user_info",

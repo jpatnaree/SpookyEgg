@@ -64,8 +64,8 @@ class Location(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     address = db.Column(db.String)
-    latitude = db.Column(db.String)
-    longtitude = db.Column(db.String)
+    latitude = db.Column(db.Float)
+    longtitude = db.Column(db.Float)
     
     reviews = db.relationship('Review', back_populates='location', cascade ='all, delete-orphan')
     
