@@ -31,11 +31,12 @@ function Mappage({allLocations, allReviews, currentUser}) {
 
 
     const locationPopup = allLocations.map(location => {
-      return <Popup longitude={location.longtitude} latitude={location.latitude}
+      return <Popup className='popup' longitude={location.longtitude} latitude={location.latitude}
       anchor="top"
       >
       <button id='add'><Link to={`/add`}><img src='https://i.imgur.com/5HKEIz0.png' alt='add'/></Link></button>
       <label id='mapname'>{location.name}</label> <br/>
+      <Link to={`/locations/${location.id}`}><h5>➡️Check out all reviews!</h5></Link>
 
     </Popup>
     })
@@ -66,13 +67,13 @@ function Mappage({allLocations, allReviews, currentUser}) {
           initialViewState={{
             latitude: 40.748817,
             longitude: -73.985428,
-            zoom: 14
+            zoom: 13.5
           }}
-          style={{width: "100svw", height: "100svh"}}
+          style={{width: "87svw", height: "98svh"}}
           mapStyle="mapbox://styles/mapbox/streets-v9"
           >
             {allPointers}
-            {isClicked? locationPopup: reviewedPopups}
+            {isClicked? null: locationPopup}
             {/* {locationPopup} */}
             <FullscreenControl />
 

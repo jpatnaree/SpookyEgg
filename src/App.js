@@ -10,6 +10,7 @@ import Mappage from './pages/Mappage';
 import SignUp from './pages/Signup';
 import SingleUser from './pages/Single_user';
 import UserInfo from './pages/User_info';
+import SingleLocation from './pages/SingleLocation';
 
 
 function App() {
@@ -140,6 +141,10 @@ function App() {
     {
       path: "/user_info/:id",
       element: <SingleUser allReviews={allReviews} currentUser={currentUser} />,
+    },
+    {
+      path: "/locations/:id",
+      element: <SingleLocation allReviews={allReviews} currentUser={currentUser} />,
     }
 
   ]

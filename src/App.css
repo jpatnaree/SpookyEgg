@@ -24,6 +24,10 @@ body {
     color: #0a0a0a;
 }
 
+#location-name{
+    text-align: center;
+}
+
 
 #pin {
     width: 30px;
