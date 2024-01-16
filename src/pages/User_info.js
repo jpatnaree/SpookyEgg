@@ -1,19 +1,9 @@
 import NavBar from "../components/Navbar";
-
-
+import { Link, useNavigate } from "react-router-dom";
 
 function UserInfo({currentUser, allReviews, setAllReviews}) {
 
-//   const {id} = allReviews
-  
-//   function deleteReview(id) {
-//     setAllReviews(allReviews.filter((r) => {
-//         return r.id !== id}))
-//     fetch(`/api/reviews/${id}`, {
-//         method: "DELETE"
-
-//     })
-// };
+  const navigate = useNavigate()
 
   const display_reviews = allReviews.map(review => {
     if (currentUser.id === review.user_id) {
@@ -50,7 +40,7 @@ function UserInfo({currentUser, allReviews, setAllReviews}) {
             <h3>Your post history: </h3>
             </div>
         {display_reviews? display_reviews: null}
-      </div> : null}
+      </div> : navigate('/')}
       </>
     );
   }

@@ -8,8 +8,6 @@ import Review from '../components/Review';
 function Home({allReviews, setAllReviews, currentUser, allComments, setAllComments}) {
 
   const navigate = useNavigate()
-
-  
   
   const display_reviews = allReviews.map(review => {
     return <Review key={review.id} review={review} currentUser={currentUser} allComments={allComments} setAllComments={setAllComments} allReviews={allReviews} setAllReviews={setAllReviews} />

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 
-function Mappage({allLocations, allReviews}) {
+function Mappage({allLocations, allReviews, currentUser}) {
 
   const navigate = useNavigate()
   const [isClicked, setIsClicked] = useState(false)
@@ -57,10 +57,7 @@ function Mappage({allLocations, allReviews}) {
       </>
     })
 
-
-
-    return (
-      <>
+    const displayMappage = <>
         <NavBar />
 
         <div className="map">
@@ -81,6 +78,13 @@ function Mappage({allLocations, allReviews}) {
 
           </Map>
     </div>
+      </>
+
+
+
+    return (
+      <>
+        {currentUser? displayMappage: navigate('/')}
       </>
     );
   }
