@@ -10,13 +10,14 @@ function Mappage({allLocations, allReviews}) {
 
   const navigate = useNavigate()
   const [isClicked, setIsClicked] = useState(false)
-  // const [clickedLocation, setClickedLocation] = useState(null)
+  const [clickedLocation, setClickedLocation] = useState(null)
 
   function handleIsClicked(id) {
     setIsClicked(() => !isClicked);
-    // setClickedLocation(id)
+    setClickedLocation(id)
   }
 
+  console.log(clickedLocation)
 
 
 
@@ -74,7 +75,7 @@ function Mappage({allLocations, allReviews}) {
           mapStyle="mapbox://styles/mapbox/streets-v9"
           >
             {allPointers}
-            {!isClicked? locationPopup: reviewedPopups}
+            {isClicked? locationPopup: reviewedPopups}
             {/* {locationPopup} */}
             <FullscreenControl />
 
