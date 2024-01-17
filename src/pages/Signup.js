@@ -20,7 +20,7 @@ const handleChange = (e) => {
 const handleSubmit = (e) => {
     e.preventDefault();
     attemptSignup(userInfo);
-    navigate('/');
+    navigate('/home');
 }
 
     return (
