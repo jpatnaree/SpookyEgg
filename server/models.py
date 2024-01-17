@@ -39,7 +39,6 @@ class Review(db.Model, SerializerMixin):
     location = db.relationship('Location', back_populates='reviews')
     comments = db.relationship('Comment', back_populates='review', cascade ='all, delete-orphan')
     
-    
 class Comment(db.Model, SerializerMixin):
     __tablename__ = 'comments_table'
     
