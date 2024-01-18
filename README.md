@@ -1,7 +1,5 @@
-![Alt text](<Screenshot 2024-01-15 210417.png>)
 
-
-# Welcome to SpookyEgg Project
+# SpookyEgg
 
 SpookyEgg is a React-Flask application, serving as a platform for sharing paranormal or unusual hotel experiences.
 
@@ -49,7 +47,7 @@ npm start
 ```
 
 Now, immerse yourself in the world of SpookyEgg and embrace the thrill of the unknown!
-
-![Alt text](<Screenshot 2024-01-15 210259.png>) 
-![Alt text](<Screenshot 2024-01-15 210342.png>) 
+![Log in page](<Screenshot 2024-01-15 210417.png>)
+![Map view](<Screenshot 2024-01-15 210259.png>) 
+![Home page](<Screenshot 2024-01-15 210342.png>) 
 
