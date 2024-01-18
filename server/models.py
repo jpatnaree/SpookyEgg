@@ -68,4 +68,4 @@ class Location(db.Model, SerializerMixin):
     
     reviews = db.relationship('Review', back_populates='location', cascade ='all, delete-orphan')
     
-users = association_proxy('reviews', 'user')
+    users = association_proxy('reviews', 'user')
