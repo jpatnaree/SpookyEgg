@@ -1,5 +1,7 @@
 
 ![logo](logoo.png)
+<!-- <img src="logoo.png" align="center" /> -->
+
 # SpookyEgg
 
 SpookyEgg is a `React` - `Flask` application, serving as a platform for sharing paranormal or unusual hotel experiences.
